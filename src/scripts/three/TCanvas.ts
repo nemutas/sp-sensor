@@ -8,6 +8,7 @@ import { TCanvasBase } from './TCanvasBase';
 
 export class TCanvas extends TCanvasBase {
 	private material?: THREE.ShaderMaterial
+	private targetTilt = new THREE.Vector2()
 
 	private assets: Assets = {
 		texture: { path: publicPath('/assets/texture.jpg') }
@@ -66,6 +67,7 @@ export class TCanvas extends TCanvasBase {
 		// https://developer.mozilla.org/ja/docs/Web/Events/Orientation_and_motion_data_explained
 		const tiltX = sensorState.angle.y / (Math.PI / 2)
 		const tiltY = (sensorState.angle.x - Math.PI / 4) / Math.PI
-		this.material!.uniforms.u_tilt.value.set(tiltX, -tiltY)
+		this.targetTilt.set(tiltX, -tiltY)
+		this.material!.uniforms.u_tilt.value.lerp(this.targetTilt, 0.1)
 	}
 }
