@@ -44,6 +44,7 @@ class App {
 
 	private dispose = () => {
 		this.canvas.dispose()
+		window.removeEventListener('deviceorientation', this.handleDeviceorientation)
 	}
 }
 

@@ -46,11 +46,15 @@ export class TCanvas extends TCanvasBase {
 	}
 
 	private setModel = () => {
-		const textureScale = this.calcTextureScale(this.assets.texture.data as THREE.Texture)
+		const texture = this.assets.texture.data as THREE.Texture
+		texture.wrapS = THREE.MirroredRepeatWrapping
+		texture.wrapT = THREE.MirroredRepeatWrapping
+		const textureScale = this.calcTextureScale(texture)
+
 		const geometry = new THREE.PlaneGeometry(2, 2)
 		this.material = new THREE.ShaderMaterial({
 			uniforms: {
-				u_texture: { value: this.assets.texture.data },
+				u_texture: { value: texture },
 				u_uvScale: { value: new THREE.Vector2(textureScale.x, textureScale.y) },
 				u_tilt: { value: new THREE.Vector2() }
 			},
