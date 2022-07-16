@@ -7,7 +7,7 @@ const float ZOOM = 0.75;
 
 void main() {
   vec2 uv = (v_uv - 0.5) * u_uvScale * ZOOM + 0.5;
-  uv += u_tilt * (1.0 - ZOOM) / 2.0 * vec2(0.15, 0.1);
+  uv += u_tilt * (1.0 - ZOOM) / 2.0 * 0.1 * (1.0 / u_uvScale);
   vec4 tex = texture2D(u_texture, uv);
   gl_FragColor = tex;
 }
