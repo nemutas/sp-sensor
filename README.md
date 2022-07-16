@@ -1,39 +1,6 @@
 # About
-This is a [Three.js](https://threejs.org/) development environment template using [Vite](https://ja.vitejs.dev/).<br>
-keywords：Vite / TypeScript / Three.js / GLSL
+In this application, we are experimenting with the use of smartphone acceleration sensors.
 
-https://nemutas.github.io/vanilla-three-template/
+Scan the QR code below with your smartphone.
 
-# How to use
-1. clone this repositry.
-```
-gh repo clone nemutas/vanilla-three-template
-```
-
-2. install package using npm.
-```
-npm i
-```
-
-3. replacing text in files.
-
-`package.json`
-```.json
-"name": "<your project name>",
-"homepage": "https://<your github account>.github.io/<your repositry name>/",
-```
-`vite.config.ts`
-```.ts
-base: mode === 'development' ? '/' : '/<your repositry name>/',
-```
-
-# Install
-```
-npm create vite@latest <project name> -- --template vanilla-ts
-```
-```
-npm i three lil-gui ress gsap
-```
-```
-npm i -D @types/three vite-plugin-glsl sass gh-pages
-```
+![QR_984899](https://user-images.githubusercontent.com/46724121/179361250-bd878de7-7e94-4b56-9838-91facb7c29bf.png)
