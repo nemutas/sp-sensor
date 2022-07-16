@@ -14,7 +14,26 @@ class App {
 		window.addEventListener('beforeunload', () => {
 			this.dispose()
 		})
-		window.addEventListener('deviceorientation', this.handleDeviceorientation.bind(this))
+		this.requestDeviceOrientation()
+	}
+
+	private requestDeviceOrientation = () => {
+		// https://developer.apple.com/forums/thread/128376
+		const doe = DeviceOrientationEvent as any
+		if (doe && doe.requestPermission && typeof doe.requestPermission === 'function') {
+			// after ios13
+			doe
+				.requestPermission()
+				.then((response: any) => {
+					if (response === 'granted') {
+						window.addEventListener('deviceorientation', this.handleDeviceorientation)
+					}
+				})
+				.catch(console.error)
+		} else {
+			// another
+			window.addEventListener('deviceorientation', this.handleDeviceorientation)
+		}
 	}
 
 	private handleDeviceorientation = (e: DeviceOrientationEvent) => {
